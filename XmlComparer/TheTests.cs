@@ -33,13 +33,6 @@ namespace XmlComparer
             Assert.That(new NestedLoopXElementComparer().Equals(xmlA.Root, xmlB.Root), Is.True);
         }
 
-        [Test]
-        public void SortMergeDeepEqualsWorksAsExpected()
-        {
-            var xmlA = XDocument.Parse(XmlA);
-            var xmlB = XDocument.Parse(XmlB);
-            Assert.That(new SortMergeXElementComparer().Equals(xmlA.Root, xmlB.Root), Is.True);
-        }
 
         public static bool Equals(XElement a, XElement b)
         {

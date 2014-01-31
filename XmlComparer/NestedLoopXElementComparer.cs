@@ -24,7 +24,7 @@ namespace XmlComparer
             }
 
             var aElements = a.Elements().ToList();
-            var bElements = a.Elements().ToList();
+            var bElements = b.Elements().ToList();
 
             if (aElements.Count != bElements.Count)
             {

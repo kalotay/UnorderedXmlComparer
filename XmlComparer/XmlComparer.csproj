@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NestedLoopXElementComparer.cs" />
-    <Compile Include="SortMergeXElementComparer.cs" />
     <Compile Include="TheTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
