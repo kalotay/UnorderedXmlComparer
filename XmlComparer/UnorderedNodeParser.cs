@@ -6,7 +6,7 @@ namespace XmlComparer
 {
     public class UnorderedNodeParser
     {
-        public IXmlNode Parse(XmlReader reader)
+        public Element Parse(XmlReader reader)
         {
             var root = new Element();
             var elementStack = new Stack<Element>();
@@ -41,7 +41,7 @@ namespace XmlComparer
                         break;
                 }
             }
-            return root.Children.First();
+            return (Element)root.Children.First();
         }
     }
 }
