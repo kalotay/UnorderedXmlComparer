@@ -17,6 +17,11 @@ namespace XmlComparer
 <item currency=""EUR"" amount = ""1.0""/>
 </bodyCollection></report>";
 
+        private const string XmlC = @"<report><bodyCollection>
+<item currency=""GBP"" amount = ""2.0""/>
+<item currency=""EUR"" amount = ""3.0""/>
+</bodyCollection></report>";
+
         [Test]
         public void XNodeDeepEqualsWorksAsExpected()
         {
@@ -26,11 +31,19 @@ namespace XmlComparer
         }
 
         [Test]
-        public void NestedLoopDeepEqualsWorksAsExpected()
+        public void NestedLoopDeepEqualsWorksAsExpectedWhenElementsAreReordered()
         {
             var xmlA = XDocument.Parse(XmlA);
             var xmlB = XDocument.Parse(XmlB);
             Assert.That(new NestedLoopXElementComparer().Equals(xmlA.Root, xmlB.Root), Is.True);
+        }
+
+        [Test]
+        public void NestedLoopDeepEqualsWorksAsExpectedWhenXmlIsDifferent()
+        {
+            var xmlA = XDocument.Parse(XmlA);
+            var xmlC = XDocument.Parse(XmlC);
+            Assert.That(new NestedLoopXElementComparer().Equals(xmlA.Root, xmlC.Root), Is.False);
         }
 
 
