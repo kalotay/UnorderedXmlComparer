@@ -13,6 +13,11 @@ namespace XmlComparer
             Children = new List<IXmlNode>();
         }
 
+        public override string ToString()
+        {
+            return GetType().Name + ": " + GetHashCode();
+        }
+
         public override bool Equals(object obj)
         {
             var other = obj as Element;

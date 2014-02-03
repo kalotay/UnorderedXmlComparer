@@ -5,6 +5,11 @@
         public string Name { get; set; }
         public string Value { get; set; }
 
+        public override string ToString()
+        {
+            return GetType().Name + ": " + Name + "=" + Value;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null)
