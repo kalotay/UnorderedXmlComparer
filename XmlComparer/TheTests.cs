@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
 
@@ -9,17 +10,20 @@ namespace XmlComparer
     {
         private const string XmlA = @"<report><bodyCollection>
 <item currency=""EUR"" amount = ""1.0""/>
+<t>hello</t>
 <item currency=""GBP"" amount = ""2.0""/>
 </bodyCollection></report>";
 
         private const string XmlB = @"<report><bodyCollection>
 <item currency=""GBP"" amount = ""2.0""/>
 <item currency=""EUR"" amount = ""1.0""/>
+<t>hello</t>
 </bodyCollection></report>";
 
         private const string XmlC = @"<report><bodyCollection>
 <item currency=""GBP"" amount = ""2.0""/>
 <item currency=""EUR"" amount = ""3.0""/>
+<t>hello</t>
 </bodyCollection></report>";
 
         [Test]
@@ -44,6 +48,24 @@ namespace XmlComparer
             var xmlA = XDocument.Parse(XmlA);
             var xmlC = XDocument.Parse(XmlC);
             Assert.That(new NestedLoopXElementComparer().Equals(xmlA.Root, xmlC.Root), Is.False);
+        }
+
+        [Test]
+        public void ParserComparesEqual()
+        {
+            var parser = new UnorderedNodeParser();
+            var xmlA = parser.Parse(XmlReader.Create(new StringReader(XmlA)));
+            var xmlB = parser.Parse(XmlReader.Create(new StringReader(XmlB)));
+            Assert.That(xmlA, Is.EqualTo(xmlB));
+        }
+
+        [Test]
+        public void ParserComparesUnEqual()
+        {
+            var parser = new UnorderedNodeParser();
+            var xmlA = parser.Parse(XmlReader.Create(new StringReader(XmlA)));
+            var xmlC = parser.Parse(XmlReader.Create(new StringReader(XmlC)));
+            Assert.That(xmlA, Is.Not.EqualTo(xmlC));
         }
 
 
