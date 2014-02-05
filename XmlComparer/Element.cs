@@ -58,8 +58,7 @@ namespace XmlComparer
 
         public override int GetHashCode()
         {
-            var hashCode = (GetType().Name + Name).GetHashCode();
-            return Children.Aggregate(hashCode, (current, xmlNode) => current ^ xmlNode.GetHashCode());
+            return Children.Aggregate(0, (current, xmlNode) => current ^ xmlNode.GetHashCode());
         }
     }
 }

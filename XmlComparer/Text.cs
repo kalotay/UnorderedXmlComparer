@@ -27,7 +27,7 @@
 
         public override int GetHashCode()
         {
-            return (GetType().Name + Value).GetHashCode();
+            return Value.GetHashCode();
         }
     }
 }
