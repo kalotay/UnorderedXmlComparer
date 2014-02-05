@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MurmurHash">
+      <HintPath>..\packages\murmurhash.1.0.0\lib\net45\MurmurHash.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -52,6 +55,7 @@
     <Compile Include="TheTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnorderedNodeParser.cs" />
+    <Compile Include="XmlFuzzer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
