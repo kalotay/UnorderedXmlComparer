@@ -61,6 +61,23 @@ namespace XmlComparer
         }
 
         [Test]
+        public void FuzzingHasNoEffectOnFlatXmlParser()
+        {
+            var xml = XDocument.Parse(XmlA);
+            var fuzzed = new XmlFuzzer().Fuzz(xml);
+            var parser = new FlatXmlParser();
+            using (var reader = xml.CreateReader())
+            {
+                var source = parser.Parse(reader);
+                using (var fuzzedReader = fuzzed.CreateReader())
+                {
+                    var fuzz = parser.Parse(fuzzedReader);
+                    Assert.That(source, Is.EqualTo(fuzz));
+                }
+            }
+        }
+
+        [Test]
         public void XNodeDeepEqualsWorksAsExpected()
         {
             var xmlA = XDocument.Parse(XmlA);
@@ -97,6 +114,24 @@ namespace XmlComparer
         public void ParserComparesUnEqual()
         {
             var parser = new UnorderedNodeParser();
+            var xmlA = parser.Parse(XmlReader.Create(new StringReader(XmlA)));
+            var xmlC = parser.Parse(XmlReader.Create(new StringReader(XmlC)));
+            Assert.That(xmlA, Is.Not.EqualTo(xmlC));
+        }
+
+        [Test]
+        public void FlatXmlParserComparesEqual()
+        {
+            var parser = new FlatXmlParser();
+            var xmlA = parser.Parse(XmlReader.Create(new StringReader(XmlA)));
+            var xmlB = parser.Parse(XmlReader.Create(new StringReader(XmlB)));
+            Assert.That(xmlA, Is.EqualTo(xmlB));
+        }
+
+        [Test]
+        public void FlatParserComparesUnEqual()
+        {
+            var parser = new FlatXmlParser();
             var xmlA = parser.Parse(XmlReader.Create(new StringReader(XmlA)));
             var xmlC = parser.Parse(XmlReader.Create(new StringReader(XmlC)));
             Assert.That(xmlA, Is.Not.EqualTo(xmlC));

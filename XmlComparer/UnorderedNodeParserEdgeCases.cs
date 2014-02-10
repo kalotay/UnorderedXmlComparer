@@ -28,12 +28,14 @@ namespace XmlComparer
 </bodyCollection></report>";
 
 
-        private UnorderedNodeParser _subject;
+        private UnorderedNodeParser _unorderedNodeParser;
+        private FlatXmlParser _flatXmlParser;
 
         [SetUp]
         public void SetUp()
         {
-            _subject = new UnorderedNodeParser();
+            _unorderedNodeParser = new UnorderedNodeParser();
+            _flatXmlParser = new FlatXmlParser();
         }
 
         [Test]
@@ -44,8 +46,8 @@ namespace XmlComparer
             using (var xmlReaderA = XmlReader.Create(readerA))
             using (var xmlReaderB = XmlReader.Create(readerB))
             {
-                var a = _subject.Parse(xmlReaderA);
-                var b = _subject.Parse(xmlReaderB);
+                var a = _unorderedNodeParser.Parse(xmlReaderA);
+                var b = _unorderedNodeParser.Parse(xmlReaderB);
                 Assert.That(a, Is.Not.EqualTo(b));
             }
         }
@@ -58,11 +60,38 @@ namespace XmlComparer
             using (var xmlReaderA = XmlReader.Create(readerA))
             using (var xmlReaderC = XmlReader.Create(readerC))
             {
-                var a = _subject.Parse(xmlReaderA);
-                var c = _subject.Parse(xmlReaderC);
+                var a = _unorderedNodeParser.Parse(xmlReaderA);
+                var c = _unorderedNodeParser.Parse(xmlReaderC);
                 Assert.That(a, Is.Not.EqualTo(c));
             }
+        }
 
+        [Test]
+        public void ElementsWithDifferentNameShouldNotCompareEqualForFlatXml()
+        {
+            using (var readerA = new StringReader(XmlA))
+            using (var readerB = new StringReader(XmlB))
+            using (var xmlReaderA = XmlReader.Create(readerA))
+            using (var xmlReaderB = XmlReader.Create(readerB))
+            {
+                var a = _flatXmlParser.Parse(xmlReaderA);
+                var b = _flatXmlParser.Parse(xmlReaderB);
+                Assert.That(a, Is.Not.EqualTo(b));
+            }
+        }
+
+        [Test]
+        public void RepeatedElementsCauseNoProblemForFlatXml()
+        {
+            using (var readerA = new StringReader(XmlA))
+            using (var readerC = new StringReader(XmlC))
+            using (var xmlReaderA = XmlReader.Create(readerA))
+            using (var xmlReaderC = XmlReader.Create(readerC))
+            {
+                var a = _flatXmlParser.Parse(xmlReaderA);
+                var c = _flatXmlParser.Parse(xmlReaderC);
+                Assert.That(a, Is.Not.EqualTo(c));
+            }
         }
     }
 }

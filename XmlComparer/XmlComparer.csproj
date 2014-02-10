@@ -56,7 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnorderedNodeParser.cs" />
     <Compile Include="UnorderedNodeParserEdgeCases.cs" />
+    <Compile Include="FlatXml.cs" />
+    <Compile Include="FlatXmlParser.cs" />
     <Compile Include="XmlFuzzer.cs" />
+    <Compile Include="FlatXmlNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
