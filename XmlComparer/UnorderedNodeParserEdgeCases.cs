@@ -19,6 +19,15 @@ namespace XmlComparer
 <t>hello</t>
 </collection></report>";
 
+        private const string XmlC = @"<report><bodyCollection>
+<item currency=""EUR"" amount = ""1.0""/>
+<item currency=""EUR"" amount = ""1.0""/>
+<t>hello</t>
+<item currency=""GBP"" amount = ""2.0""/>
+<item currency=""EUR"" amount = ""1.0""/>
+</bodyCollection></report>";
+
+
         private UnorderedNodeParser _subject;
 
         [SetUp]
@@ -39,6 +48,21 @@ namespace XmlComparer
                 var b = _subject.Parse(xmlReaderB);
                 Assert.That(a, Is.Not.EqualTo(b));
             }
+        }
+
+        [Test]
+        public void RepeatedElementsCauseNoProblem()
+        {
+            using (var readerA = new StringReader(XmlA))
+            using (var readerC = new StringReader(XmlC))
+            using (var xmlReaderA = XmlReader.Create(readerA))
+            using (var xmlReaderC = XmlReader.Create(readerC))
+            {
+                var a = _subject.Parse(xmlReaderA);
+                var c = _subject.Parse(xmlReaderC);
+                Assert.That(a, Is.Not.EqualTo(c));
+            }
+
         }
     }
 }

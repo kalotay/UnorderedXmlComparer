@@ -38,7 +38,7 @@ namespace XmlComparer
 
             using (var thisSorted = Children.OrderBy(node => node.GetHashCode()).GetEnumerator())
             {
-                using (var otherSorted = Children.OrderBy(node => node.GetHashCode()).GetEnumerator())
+                using (var otherSorted = other.Children.OrderBy(node => node.GetHashCode()).GetEnumerator())
                 {
                     for (var i = 0; i < Children.Count; i++)
                     {
@@ -46,7 +46,8 @@ namespace XmlComparer
                         {
                             return false;
                         }
-                        if (thisSorted.Current.GetHashCode() != otherSorted.Current.GetHashCode())
+
+                        if (!thisSorted.Current.Equals(otherSorted.Current))
                         {
                             return false;
                         }
