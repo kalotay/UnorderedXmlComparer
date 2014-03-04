@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class Element: IXmlNode
     {

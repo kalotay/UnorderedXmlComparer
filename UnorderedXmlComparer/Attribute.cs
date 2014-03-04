@@ -1,33 +1,35 @@
-﻿namespace XmlComparer
+﻿namespace UnorderedXmlComparer
 {
-    public class Text: IXmlNode
+    public class Attribute: IXmlNode
     {
+        public string Name { get; set; }
         public string Value { get; set; }
 
         public override string ToString()
         {
-            return GetType().Name + ": " + Value;
+            return GetType().Name + ": " + Name + "=" + Value;
         }
 
         public override bool Equals(object obj)
         {
             if (obj == null)
             {
-                return Value == null;
+                return Value == null && Name == null;
             }
 
-            var other = obj as Text;
+            var other = obj as Attribute;
             if (other == null)
             {
                 return false;
             }
 
-            return Value == other.Value;
+            return Value == other.Value && Name == other.Name;
+
         }
 
         public override int GetHashCode()
         {
-            return Value.GetHashCode();
+            return (Name + Value).GetHashCode();
         }
     }
 }

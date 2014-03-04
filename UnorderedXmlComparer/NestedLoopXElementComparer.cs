@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class NestedLoopXElementComparer : IEqualityComparer<XElement>
     {

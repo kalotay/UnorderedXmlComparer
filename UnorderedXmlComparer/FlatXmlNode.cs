@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class FlatXmlNode: IComparable<FlatXmlNode>
     {

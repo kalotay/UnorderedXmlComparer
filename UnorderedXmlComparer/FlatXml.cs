@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class FlatXml: IEquatable<FlatXml>
     {

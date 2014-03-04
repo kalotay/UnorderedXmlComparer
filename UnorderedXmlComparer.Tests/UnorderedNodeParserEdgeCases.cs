@@ -2,7 +2,7 @@ using System.IO;
 using System.Xml;
 using NUnit.Framework;
 
-namespace XmlComparer.Tests
+namespace UnorderedXmlComparer.Tests
 {
     [TestFixture]
     public class UnorderedNodeParserEdgeCases

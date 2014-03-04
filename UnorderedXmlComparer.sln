@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlComparer", "XmlComparer\XmlComparer.csproj", "{AD1B2DBA-8CCE-4FAD-96E7-227BE9227E2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnorderedXmlComparer", "UnorderedXmlComparer\UnorderedXmlComparer.csproj", "{AD1B2DBA-8CCE-4FAD-96E7-227BE9227E2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{956B2830-5C1B-4905-8DC2-A90F01662048}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{956B28
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlComparer.Tests", "XmlComparer.Tests\XmlComparer.Tests.csproj", "{CDE179C3-0AE6-4087-80A2-CAA661795D2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnorderedXmlComparer.Tests", "UnorderedXmlComparer.Tests\UnorderedXmlComparer.Tests.csproj", "{CDE179C3-0AE6-4087-80A2-CAA661795D2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

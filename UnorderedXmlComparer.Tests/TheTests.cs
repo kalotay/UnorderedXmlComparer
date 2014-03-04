@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
 
-namespace XmlComparer.Tests
+namespace UnorderedXmlComparer.Tests
 {
     [TestFixture]
     public class TheTests

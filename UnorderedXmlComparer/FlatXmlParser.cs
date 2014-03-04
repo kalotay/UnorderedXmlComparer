@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class FlatXmlParser
     {

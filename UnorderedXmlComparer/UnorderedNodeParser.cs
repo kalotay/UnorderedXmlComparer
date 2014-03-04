@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml;
 
-namespace XmlComparer
+namespace UnorderedXmlComparer
 {
     public class UnorderedNodeParser
     {
